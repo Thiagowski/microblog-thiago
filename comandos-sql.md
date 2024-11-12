@@ -23,3 +23,37 @@ VALUES ('chico bento', 'chico@gmail.com', 'dodo1', 'editor');
 
 INSERT INTO usuarios (nome, email, senha, tipo)
 VALUES ('sasuke', 'sasuke@gmail.com', 'sasa', 'editor');
+
+
+### Inserindo noticias
+
+INSERT INTO noticias (titulo, texto, resumo, imagem, usuario_id)
+VALUES (
+    'O palmeiras não tem mundial',
+    '51 é pinga',
+    'vergonha demaisi',
+    'taca.jpg',
+    1
+
+);
+
+INSERT INTO noticias (titulo, texto, resumo, imagem, usuario_id)
+VALUES (
+    'maria faz bolo e morre',
+    'maria tira o bolo da forma e explode',
+    'explosao de sabores',
+    'donabenta.jpg',
+    3
+
+);
+
+
+INSERT INTO noticias (titulo, texto, resumo, imagem, usuario_id)
+VALUES (
+    'o papa é pop',
+    'ele tentou ser do funk mas o pop é pop',
+    'fã da madonna',
+    'papa.jpg',
+    1
+
+);
