@@ -11,8 +11,8 @@ function inserirUsuario($conexao, $nome, $email, $senha, $tipo)
 
 
     // Executando o comando no banco via PHP
-    mysqli_query($conexao, $sql);
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 
 
-    
+
 }
