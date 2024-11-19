@@ -7,6 +7,36 @@ $id = $_GET['id'];
 
 // Chamamos a função para carregar os dados do usuário através do ID
 $dadosUsuario = listarUmUsuario( $conexao, $id);
+
+// Verificando se o botão do formulario foi acionado 
+if (isset($_POST['atualizar'])) {
+// pegando os dados dos campos
+$nome = $_POST['nome'];
+$email = $_POST['email'];
+$tipo = $_POST['tipo'];
+
+
+
+/* Se a senha estiver vazia OU for a mesma */ 
+if (empty($_POST['senha']) || password_verify(
+	$_POST['senha'],
+	$dadosUsuario['senha']
+)) {
+	// Manter a mesma senha (copiamos a senha do banco para uma variável)
+	$senha = $dadosUsuario['senha'];
+
+} else {
+	// Codificar a nova senha digitada no formulário
+	$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+}
+
+atualizarUsuario($conexao, $id, $nome, $email, $senha, $tipo);
+
+// Redirecionamos para a página com a lista de usuarios
+
+header("location: usuarios.php");
+
+}
 ?>
 
 
@@ -38,7 +68,6 @@ $dadosUsuario = listarUmUsuario( $conexao, $id);
 				<label class="form-label" for="tipo">Tipo:</label>
 				<select class="form-select" name="tipo" id="tipo" required>
 					<option value=""></option>
-					
 					
 					<option
 					<?php if( $dadosUsuario['tipo'] == 'editor')  echo 'selected';?>
