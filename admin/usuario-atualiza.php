@@ -1,6 +1,15 @@
 <?php 
 require "../includes/cabecalho-admin.php";
+require "../includes/funcoes-usuarios.php";
+
+// Capturando o id passado via URL
+$id = $_GET['id'];
+
+// Chamamos a função para carregar os dados do usuário através do ID
+$dadosUsuario = listarUmUsuario( $conexao, $id);
 ?>
+
+<pre> <?=var_dump($dadosUsuario);?></pre>
 
 
 <div class="row">
