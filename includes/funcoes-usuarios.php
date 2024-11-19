@@ -55,5 +55,9 @@ function atualizarUsuario ($conexao, $id, $nome, $email, $senha, $tipo) {
 
 // COPIE E COLE AQUI O MYSQLI_QUERY DA FUNÇÃO inserirUsuario
 mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+}
 
+function excluirUsuario($conexao, $id){
+    $sql = "DELETE FROM usuarios WHERE id = $id";
+    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
 }
