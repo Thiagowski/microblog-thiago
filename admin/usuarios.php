@@ -2,6 +2,9 @@
 require "../includes/cabecalho-admin.php";
 require "../includes/funcoes-usuarios.php";
 
+verificarNivel();
+
+
 // Chamamos a função listarUsuarios e recebemos o array que ela gerou,guardando na variavel $usuarios
 $listaDeUsuarios = listarUsuarios($conexao);
 ?>
@@ -38,17 +41,17 @@ $listaDeUsuarios = listarUsuarios($conexao);
 					<?php foreach ($listaDeUsuarios as $usuario) { ?>
 
 						<tr>
-							<td> <?=$usuario['nome'] ?> </td>
-							<td> <?=$usuario['email'] ?> </td>
-							<td> <?=$usuario['tipo'] ?> </td>
+							<td> <?= $usuario['nome'] ?> </td>
+							<td> <?= $usuario['email'] ?> </td>
+							<td> <?= $usuario['tipo'] ?> </td>
 							<td class="text-center">
 								<a class="btn btn-warning"
-									href="usuario-atualiza.php?id=<?=$usuario['id']?>">
+									href="usuario-atualiza.php?id=<?= $usuario['id'] ?>">
 									<i class="bi bi-pencil"></i> Atualizar
 								</a>
 
 								<a class="btn btn-danger excluir"
-									href="usuario-exclui.php?id=<?=$usuario['id']?>">
+									href="usuario-exclui.php?id=<?= $usuario['id'] ?>">
 									<i class="bi bi-trash"></i> Excluir
 								</a>
 							</td>
