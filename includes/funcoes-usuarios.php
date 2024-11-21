@@ -1,6 +1,12 @@
 <?php
 require "conecta.php";
 
+
+function executarQuery($conexao, $sql){
+$consulta = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+return $consulta;
+}
+
 // Função para inserir novos usuarios
 function inserirUsuario($conexao, $nome, $email, $senha, $tipo)
 {
@@ -11,7 +17,7 @@ function inserirUsuario($conexao, $nome, $email, $senha, $tipo)
 
 
     // Executando o comando no banco via PHP
-    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    executarQuery($conexao, $sql);
 
 }
 
@@ -22,7 +28,8 @@ function listarUsuarios ($conexao){
 
 /* Executando o comando no banco via PHP
 Obtendo o resultado ("bruto") da consulta/comando. */
-$resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+$resultado = executarQuery($conexao, $sql);
+
 
 
 /* Extraindo do resultado "bruto" os dados da consulta em formato de ARRAY ASSOCIATIVO. */
@@ -36,7 +43,8 @@ function listarUmUsuario($conexao, $id){
 $sql = "SELECT * FROM usuarios WHERE id = $id";
 
 // execução e verificação do comando SQL
-$resultado = mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+$resultado = executarQuery($conexao, $sql);
+
 
 // Extração dos dados de UMA PESSOA como array associativo
 return mysqli_fetch_assoc($resultado);
@@ -54,10 +62,11 @@ function atualizarUsuario ($conexao, $id, $nome, $email, $senha, $tipo) {
 
 
 // COPIE E COLE AQUI O MYSQLI_QUERY DA FUNÇÃO inserirUsuario
-mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+executarQuery($conexao, $sql);
 }
 
 function excluirUsuario($conexao, $id){
     $sql = "DELETE FROM usuarios WHERE id = $id";
-    mysqli_query($conexao, $sql) or die(mysqli_error($conexao));
+    executarQuery($conexao, $sql);
+
 }
