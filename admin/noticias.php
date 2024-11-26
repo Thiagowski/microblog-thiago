@@ -1,13 +1,21 @@
 <?php 
 require "../includes/cabecalho-admin.php";
+require "../includes/funcoes-noticias.php";
+
+$idUsuario = $_SESSION['id'];
+$tipoUsuario = $_SESSION['tipo'];
+
+// chamando a função e pegando o array com a lista de noticias
+$listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 ?>
 
+<pre><?=var_dump( $listaDeNoticias)?></pre>
 
 <div class="row">
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 		
 		<h2 class="text-center">
-		Notícias <span class="badge bg-dark">X</span>
+		Notícias <span class="badge bg-dark"><?=count($listaDeNoticias)?> </span>
 		</h2>
 
 		<p class="text-center mt-5">
