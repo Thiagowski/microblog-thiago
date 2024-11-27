@@ -30,31 +30,35 @@ $listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 					<tr>
 						<th>Título</th>
 						<th>Data</th>
-						<th>Autor</th>
+						<?php if ($tipoUsuario === 'admin') { ?>
+							<th>Autor</th>
+						<?php } ?>
 						<th class="text-center">Operações</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<?php foreach ($listaDeNoticias as $noticia) { ?>
-					<tr>
-						<td> <?=$noticia['titulo'] ?> </td>
-						<td> <?=formataData($noticia['data']) ?> </td>
-						<td> <?=$noticia['nome'] ?> </td>
-						<td class="text-center">
-							<a class="btn btn-warning"
-								href="noticia-atualiza.php">
-								<i class="bi bi-pencil"></i> Atualizar
-							</a>
+						<tr>
+							<td> <?= $noticia['titulo'] ?> </td>
+							<td> <?= formataData($noticia['data']) ?> </td>
+							<?php if ($tipoUsuario === 'admin') { ?>
+								<td> <?= $noticia['nome'] ?> </td>
+							<?php } ?>
+							<td class="text-center">
+								<a class="btn btn-warning"
+									href="noticia-atualiza.php?id=<?= $noticia['id'] ?>">
+									<i class="bi bi-pencil"></i> Atualizar
+								</a>
 
-							<a class="btn btn-danger excluir"
-								href="noticia-exclui.php">
-								<i class="bi bi-trash"></i> Excluir
-							</a>
-						</td>
-					</tr>
+								<a class="btn btn-danger excluir"
+									href="noticia-exclui.php?id=<?= $noticia['id'] ?>">
+									<i class="bi bi-trash"></i> Excluir
+								</a>
+							</td>
+						</tr>
 					<?php } ?>
-				
+
 				</tbody>
 			</table>
 		</div>
