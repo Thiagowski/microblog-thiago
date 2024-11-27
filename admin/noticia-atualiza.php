@@ -13,6 +13,33 @@ $tipoUsuario = $_SESSION['tipo'];
 
 // Chamando a função e carregando o array com os dados da noticia
 $dadosDaNoticia = lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario);
+
+
+if (isset($_POST['atualizar'])) {
+$titulo = $_POST['titulo'];
+$texto = $_POST['texto'];
+$resumo = $_POST['resumo'];
+
+// Lógica para a imagem - se o campo "imagem" estiver vazio, entao significa que o usuario não quer mudar de imagem. portanto, a imagem que ja existe continuará (Será mantida)
+if (empty($_FILES['imagem']['name'])) {
+    // pegamos a imagem/referência que ja tem e colocamos na variavel
+    $imagem = $_POST['imagem-existente'];
+} else {
+    // Senão, pegamos a imagem/referência NOVA e colocamos na variavel
+    $imagem = $_FILES['imagem']['name'];        
+    
+    // E em seguida, enviamos o arquivo pro servidor
+    upload($_FILES['imagem']);
+}
+
+// chamamos a função para atualizar (update)
+atualizarNoticia( $conexao, $titulo, $texto, $resumo, $imagem, $idNoticia, $idUsuario, $tipoUsuario);
+
+// Voltamos para a pagina de noticias.php
+header("location: noticias.php");
+
+
+}    
 ?>
 
 
@@ -38,7 +65,7 @@ $dadosDaNoticia = lerUmaNoticia($conexao, $idNoticia, $idUsuario, $tipoUsuario);
             <div class="mb-3">
                 <label class="form-label" for="resumo">Resumo (máximo de 300 caracteres):</label>
                 <span id="maximo" class="badge bg-danger">0</span>
-                <textarea class="form-control" required name="resumo" id="resumo" cols="50" rows="2" maxlength="300"><?echo $dadosDaNoticia['resumo']?></textarea>
+                <textarea class="form-control" required name="resumo" id="resumo" cols="50" rows="2" maxlength="300"><?= $dadosDaNoticia['resumo']?></textarea>
             </div>
 
             <div class="mb-3">
