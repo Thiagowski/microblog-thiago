@@ -111,7 +111,7 @@ function buscar($conexao, $termoDigitado){
 
 $resultado = executarQuery($conexao, $sql);
 
-return mysqli_fetch_all($resultado);
+return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 
 
 }

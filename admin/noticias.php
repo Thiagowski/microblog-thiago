@@ -38,7 +38,7 @@ $listaDeNoticias = lerNoticias($conexao, $idUsuario, $tipoUsuario);
 				</thead>
 
 				<tbody>
-					<?php foreach ($listaDeNoticias as $noticia) { ?>
+				<?php foreach ($listaDeNoticias as $noticia) { ?>
 						<tr>
 							<td> <?= $noticia['titulo'] ?> </td>
 							<td> <?= formataData($noticia['data']) ?> </td>
