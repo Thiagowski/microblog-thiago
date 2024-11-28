@@ -1,10 +1,14 @@
 <?php 
 require "includes/cabecalho.php"; 
+require "includes/funcoes-noticias.php";
+
+$listaDeNoticias = lerTodasNoticias($conexao);
 ?>  
 
 
 <div class="row my-1 mx-md-n1">
 
+<?php foreach($listaDeNoticias as $noticia) { ?>
     <!-- INÍCIO Card -->
 		<div class="col-md-6 my-1 px-md-1">
             <article class="card shadow-sm h-100">
@@ -18,7 +22,7 @@ require "includes/cabecalho.php";
             </article>
 		</div>
 		<!-- FIM Card -->
-
+<?php } ?>
         
 </div>        
 
