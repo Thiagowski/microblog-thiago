@@ -94,6 +94,16 @@ function lerTodasNoticias($conexao){
     return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
 
+function lerNoticiaCompleta($conexao, $idNoticia){
+$sql = "SELECT noticias.id, noticias.titulo, noticias.data, noticias.imagem, noticias.texto, usuarios.nome FROM noticias JOIN usuarios ON noticias.usuario_id = usuarios.id WHERE noticias.id = $idNoticia";
+
+$resultado = executarQuery( $conexao, $sql);
+
+return mysqli_fetch_assoc($resultado);
+    
+    
+    }
+
 
 /* *********** */
 
