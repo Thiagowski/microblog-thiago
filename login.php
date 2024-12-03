@@ -12,8 +12,9 @@ if (isset($_POST['entrar'])) {
 		die();
 	}
 
-	$email = $_POST['email'];
-	$senha = $_POST['senha'];
+	$email = mysqli_real_escape_string($conexao, $_POST['email']);
+	$senha = mysqli_real_escape_string($conexao, $_POST['senha']);
+
 
 
 	//  1) Buscando no banco de dados o usuário

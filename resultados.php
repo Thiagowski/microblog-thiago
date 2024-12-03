@@ -14,20 +14,20 @@ $dadosDaBusca = buscar($conexao, $termoDigitado);
     
 <h2 class="col-12 fw-light">
         Você procurou por <span class="badge bg-dark"><?=$termoDigitado?></span> e
-        obteve <span class="badge bg-info">X</span> resultados
+        obteve <span class="badge bg-info"><?=count($dadosDaBusca)?></span> resultados
     </h2>
 
+    <?php foreach ($dadosDaBusca as $noticia) { ?>
     <div class="col-12 my-1">
-        <?php foreach ($dadosDaBusca as $noticia) { ?>
         <article class="card">
             <div class="card-body">
                 <h3 class="fs-4 card-title fw-light"><?=$noticia['titulo'] ?></h3>
                 <p class="card-text">
                     <time><?=formataData($noticia['data']) ?> </time> -
-                    Resumo da notícia.
+                    <?=$noticia['resumo'] ?>
                 </p>
 
-                <a href="noticia.php" class="btn btn-primary btn-sm"> </a>
+                <a href="noticia.php?id=<?=$noticia['id'] ?>" class="btn btn-primary btn-sm"> Continuar lendo </a>
             </div>
         </article>
     <?php } ?>

@@ -105,7 +105,7 @@ function buscar($conexao, $termoDigitado){
     // atenção: usamos o Like em vez de igual no where e também o % para ampliar a possibilidade de encontrar o termo digitado no banco de dados. Usamos o LIKE com % para uma pesquisa parcial/não exata.
 
 
-    $sql = "SELECT id, titulo, resumo data FROM noticias
+    $sql = "SELECT id, titulo, resumo, data FROM noticias
     WHERE titulo LIKE '%$termoDigitado%'
     OR resumo LIKE '%$termoDigitado%' OR texto LIKE '%$termoDigitado%' ORDER BY data DESC";
 
@@ -170,3 +170,5 @@ function upload($arquivo)
     para a pasta de destino indicada (imagens) */
     move_uploaded_file($temporario, $destino);
 }
+
+
